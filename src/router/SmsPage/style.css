@@ -1,0 +1,10 @@
+.sms{
+    display: -webkit-box;
+  -webkit-line-clamp: 2; /* Số dòng tối đa hiển thị */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis; /* Hiển thị ... khi vượt quá giới hạn */
+  color: #b4b4b6;
+  border-bottom: 1px solid #f0f0f0;
+  padding-bottom: 3px;
+}

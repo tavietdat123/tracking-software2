@@ -1,0 +1,30 @@
+@keyframes marquee {
+    0% {
+      transform: translatey(0);
+      -webkit-transform: translatey(0);
+      -moz-transform: translatey(0);
+      -ms-transform: translatey(0);
+      -o-transform: translatey(0);
+}
+    100% {
+      transform: translatey(-100%);
+      -webkit-transform: translatey(-100%);
+      -moz-transform: translatey(-100%);
+      -ms-transform: translatey(-100%);
+      -o-transform: translatey(-100%);
+}
+  }
+  
+  .marquee-container {
+    white-space: nowrap;
+    overflow: hidden;
+    max-height: 180px;
+
+  }
+  
+  .marquee-content {
+    display: inline-block;
+    animation: marquee 20s linear infinite;
+    -webkit-animation: marquee 130s linear infinite;
+    color: #fff;
+}

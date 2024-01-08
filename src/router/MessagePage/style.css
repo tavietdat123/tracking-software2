@@ -1,0 +1,8 @@
+.message{
+    display: -webkit-box;
+  -webkit-line-clamp: 1; /* Số dòng tối đa hiển thị */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis; /* Hiển thị ... khi vượt quá giới hạn */
+  max-width: 100%;
+}
