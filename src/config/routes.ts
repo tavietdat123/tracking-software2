@@ -8,6 +8,7 @@ export const ROUTES = {
     history: '/history',
     map: '/map',
     zalo: '/zalo',
+    loading: '/loading'
 
 
 };

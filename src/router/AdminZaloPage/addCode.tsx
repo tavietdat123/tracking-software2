@@ -10,6 +10,7 @@ interface CreateCode {
     code: string
     message: string
     fullName: string
+    phone: string
     avatar: File | '';
 }
 function AddCode({ open, handleClose, handleResetList }: { open: boolean, handleClose: () => void, handleResetList: () => void }) {
@@ -27,6 +28,7 @@ function AddCode({ open, handleClose, handleResetList }: { open: boolean, handle
         formData.append('code', data.code)
         formData.append('fullName', data.fullName)
         formData.append('message', data.message)
+        formData.append('phone', data.phone)
         apiService('post', API_PATHS.UPLOAD, formData, '', true)
             .then(() => {
                 toast.success('Create code success');
@@ -92,6 +94,18 @@ function AddCode({ open, handleClose, handleResetList }: { open: boolean, handle
                     )}
                 />
                 {errors.fullName && <Typography sx={{ color: 'red', fontSize: '12px', }}>This field is required</Typography>}
+            </Box>
+            <Box sx={{ marginBottom: '15px' }}>
+                <Controller
+                    name="phone"
+                    defaultValue=""
+                    control={control}
+                    rules={{ required: true }}
+                    render={({ field }: any) => (
+                        <TextField id="outlined-basic" type="number" label="Phone number" variant="outlined" size="small" {...field} sx={styleInput} />
+                    )}
+                />
+                {errors.phone && <Typography sx={{ color: 'red', fontSize: '12px', }}>This field is required</Typography>}
             </Box>
             <Box sx={{ marginBottom: '15px' }}>
                 <Controller

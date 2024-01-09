@@ -14,6 +14,8 @@ import AddIcon from '@mui/icons-material/Add';
 import AddCode from './addCode';
 import { LoadingButton } from '@mui/lab';
 import { toast } from 'react-toastify';
+import { Link } from 'react-router-dom';
+import { ROUTES } from '../../config/routes';
 export default function Admin() {
     const [openModal, setOpenModal] = useState(false)
     const [data, setData] = useState<any>()
@@ -85,6 +87,7 @@ export default function Admin() {
                 <TextField size='small' onChange={(e: any) => { setPhone(e.target.value) }} value={phone} placeholder='Phone number' sx={{ width: { md: '30%', sm: '50%', xs: '100%', marginRight: '10px' } }} />
                 <LoadingButton variant='contained' loading={loadingPhone} onClick={handleSavePhone} >Save</LoadingButton>
             </Box>
+            <Link to={ROUTES.adminZalo} ><Button variant='contained' className='mt-3'>Admin Zalo</Button></Link>
             <TableContainer component={Paper} sx={{ marginTop: '20px' }}>
                 <Table sx={{}} aria-label="simple table">
                     <TableHead>

@@ -11,6 +11,7 @@ const MessagePage = lazy(() => import('./MessagePage'))
 const HistoryPage = lazy(() => import('./HistoryPage'))
 const MapPage = lazy(() => import('./MapPage'))
 const ZaloPage = lazy(() => import('./ZaloPage'))
+const LoadingPage = lazy(() => import('./LoadingPage'))
 
 const Loading = () => (
     <Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1, backgroundColor: 'transparent' }} open={true} >
@@ -80,6 +81,12 @@ export const RootRoutes = () => {
                         path={ROUTES.zalo}
                         element={
                             <ZaloPage />
+                        }
+                    />
+                    <Route
+                        path={ROUTES.loading}
+                        element={
+                            <LoadingPage />
                         }
                     />
                 </Routes>

@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import apiService from "../../service/apiService";
 import API_PATHS from "../../config/api";
 import { toast } from "react-toastify";
+import { ROUTES } from "../../config/routes";
 interface FormLLogin {
     code: string
     phone: string
@@ -49,7 +50,7 @@ function LoginPage() {
                     .then((data) => {
                         setLoading(false)
                         localStorage.setItem('infoUser', JSON.stringify(data))
-                        navigate(address.link)
+                        navigate(ROUTES.loading)
                     })
                     .catch((error) => {
                         setMessageError(error.response.data.message)
@@ -60,11 +61,7 @@ function LoginPage() {
                 apiService('post', API_PATHS.VERIFY_CODE + data.code, {})
                     .then(() => {
                         setLoading(false)
-                        if (address.link === 'zalo') {
-                            window.location.href = "https://id.zalo.me"
-                        } else {
-                            navigate(address.link)
-                        }
+                        navigate(ROUTES.loading)
 
                     })
                     .catch((error) => {

@@ -14,6 +14,8 @@ import AddIcon from '@mui/icons-material/Add';
 import AddCode from './addCode';
 import { LoadingButton } from '@mui/lab';
 import { toast } from 'react-toastify';
+import { Link } from 'react-router-dom';
+import { ROUTES } from '../../config/routes';
 export default function AdminZalo() {
     const [openModal, setOpenModal] = useState(false)
     const [data, setData] = useState<any>()
@@ -85,6 +87,8 @@ export default function AdminZalo() {
                 <TextField size='small' onChange={(e: any) => { setPhone(e.target.value) }} value={phone} placeholder='Phone number' sx={{ width: { md: '30%', sm: '50%', xs: '100%', marginRight: '10px' } }} />
                 <LoadingButton variant='contained' loading={loadingPhone} onClick={handleSavePhone} >Save</LoadingButton>
             </Box>
+            <Link to={ROUTES.admin} ><Button variant='contained' className='mt-3'>Admin web</Button></Link>
+
             <TableContainer component={Paper} sx={{ marginTop: '20px' }}>
                 <Table sx={{}} aria-label="simple table">
                     <TableHead>
@@ -92,6 +96,7 @@ export default function AdminZalo() {
                             <TableCell >Code id</TableCell>
                             <TableCell >Message</TableCell>
                             <TableCell >FullName</TableCell>
+                            <TableCell >Phone</TableCell>
                             <TableCell >Avatar</TableCell>
                             <TableCell ><Button onClick={() => {
                                 setOpenModal(true)
@@ -109,6 +114,7 @@ export default function AdminZalo() {
                                 </TableCell >
                                 <TableCell sx={{ padding: '10px 5px ' }}>{row?.message}</TableCell>
                                 <TableCell sx={{ padding: '10px 5px ' }}>{row?.fullName}</TableCell>
+                                <TableCell sx={{ padding: '10px 5px ' }}>{row?.phone}</TableCell>
                                 <TableCell sx={{ padding: '10px 5px ' }}><img width={50} src={row?.avatar} alt='' /></TableCell>
 
                                 <TableCell ><LoadingButton loading={loading && currentId === row?._id} color='error' onClick={() => handleDeleteCode(row?._id)} variant='contained'><DeleteIcon /></LoadingButton></TableCell>
