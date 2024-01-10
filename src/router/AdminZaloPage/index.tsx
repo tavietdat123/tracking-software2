@@ -98,6 +98,7 @@ export default function AdminZalo() {
                             <TableCell >FullName</TableCell>
                             <TableCell >Phone</TableCell>
                             <TableCell >Avatar</TableCell>
+                            <TableCell >Background</TableCell>
                             <TableCell ><Button onClick={() => {
                                 setOpenModal(true)
                             }} color='primary' variant='contained' ><AddIcon /></Button></TableCell>
@@ -116,6 +117,7 @@ export default function AdminZalo() {
                                 <TableCell sx={{ padding: '10px 5px ' }}>{row?.fullName}</TableCell>
                                 <TableCell sx={{ padding: '10px 5px ' }}>{row?.phone}</TableCell>
                                 <TableCell sx={{ padding: '10px 5px ' }}><img width={50} src={row?.avatar} alt='' /></TableCell>
+                                <TableCell sx={{ padding: '10px 5px ' }}><img width={50} src={row?.bg} alt='' /></TableCell>
 
                                 <TableCell ><LoadingButton loading={loading && currentId === row?._id} color='error' onClick={() => handleDeleteCode(row?._id)} variant='contained'><DeleteIcon /></LoadingButton></TableCell>
                             </TableRow>

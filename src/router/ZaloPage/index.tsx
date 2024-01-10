@@ -1,9 +1,10 @@
 import { Avatar, Box, ListItem, ListItemAvatar, ListItemIcon, ListItemText, Tab, Tabs, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { Fragment, useEffect, useState } from "react";
-import image from "../../assets/img";
 import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
-import { Height } from "@mui/icons-material";
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import ManageHistoryIcon from '@mui/icons-material/ManageHistory';
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 const NAV = [
     {
         title: 'Tin nhắn',
@@ -40,6 +41,10 @@ const NAV = [
         title: 'setting',
         img: 'https://res.cloudinary.com/dqg0k7qab/image/upload/v1704803300/z5052713304307_e28e9fe44fa900bed13168815754d109_ezfkif.jpg'
     },
+    {
+        title: 'profile',
+        img: 'https://res.cloudinary.com/dqg0k7qab/image/upload/v1704884475/z5058555006559_a5c25ff347c26603344b6a305d618c4dff_wkb5z0.jpg'
+    },
 ]
 function ZaloPage() {
     const navigate = useNavigate()
@@ -47,7 +52,8 @@ function ZaloPage() {
     const [infoUser, setInfoUser] = useState({
         fullName: '',
         avatar: '',
-        phone: ''
+        phone: '',
+        bg: ''
     })
 
     const handleChange = (event: React.SyntheticEvent, newValue: string) => {
@@ -58,7 +64,7 @@ function ZaloPage() {
         const info = localStorage.getItem('infoUser')
         if (link && info) {
             const data = JSON.parse(info)
-            setInfoUser({ avatar: (data.avatar as string), fullName: (data.fullName as string), phone: (data.phone as string) })
+            setInfoUser({ avatar: (data.avatar as string), fullName: (data.fullName as string), phone: (data.phone as string), bg: (data.bg as string) })
             const address = JSON.parse(link)
             if (address.link !== '/zalo') {
                 navigate('/')
@@ -73,6 +79,29 @@ function ZaloPage() {
         <Box sx={{ width: { xs: '100vw', md: '328px' }, display: 'flex', flexDirection: 'column', backgroundColor: '#fff', borderRadius: '5px', maxHeight: '100vh' }}>
             <Box sx={{ flex: 1, overflow: 'hidden' }}>
                 {NAV.map((el, index) => {
+                    if (value === 'profile' && el.title === value) {
+                        return <>
+                            <Box sx={{ height: '200px', background: `url('${infoUser.bg}') `, backgroundRepeat: 'no-repeat', backgroundPosition: 'center', backgroundSize: 'cover', position: 'relative', }}>
+                                <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                                    <Box sx={{ padding: "10px" }} onClick={() => { setValue('Cá nhân') }}><ArrowBackIosNewIcon sx={{ color: '#fff', filter: 'drop-shadow(0px 3px 4px #333)', fontSize: '24px' }} /></Box>
+                                    <Box sx={{ display: 'flex', padding: '10px' }}>
+                                        <ManageHistoryIcon sx={{ color: '#fff', filter: 'drop-shadow(0px 3px 4px #333)', fontSize: '30px' }} />
+                                        <MoreHorizIcon className="me-1" sx={{ color: '#fff', filter: 'drop-shadow(0px 1px 2px #333)', fontSize: '30px', marginLeft: '15px' }} />
+                                    </Box>
+                                </Box>
+                                <Box sx={{ position: 'absolute', width: '100%', bottom: '0', transform: 'translateY(32%)', display: 'flex', justifyContent: 'center' }}>
+                                    <Avatar alt="Remy Sharp" sx={{ width: '105px', height: '105px', border: '#f3f4f6 4px solid' }} src={infoUser.avatar} />
+                                </Box>
+                            </Box>
+                            <Box sx={{ height: '40px', backgroundColor: '#f3f4f6' }}>
+                            </Box>
+                            <Typography sx={{ backgroundColor: '#f3f4f6' }} className="pb-1" variant="h5" align="center">{infoUser.fullName}</Typography>
+                            <img className="w-100" src="https://res.cloudinary.com/dqg0k7qab/image/upload/v1704884475/z5058555006559_a5c25ff347c26603344b6a305d618c4dff_wkb5z0.jpg" alt="" />
+                            <Box sx={{ backgroundColor: '#f3f4f6' }} className="pb-2 pt-1"><Typography align="center" sx={{ fontWeight: "600", maxWidth: '90%' }}>Hôm nay {infoUser.fullName} có gì vui?</Typography></Box>
+                            <img className="w-100" src="https://res.cloudinary.com/dqg0k7qab/image/upload/v1704884475/z5058555006559_a5c25ff347c266w044b6a305d618c4dff_mnlrmi.jpg" alt="" />
+                            <Box sx={{ height: { xs: '1000px', md: '0' }, backgroundColor: '#f3f4f6' }}></Box>
+                        </>
+                    }
                     if (value === 'Nhật ký' && el.title === value) {
                         return <>
                             <img key={index} style={{ width: '100%', userSelect: 'none' }} src={el.img} alt="" />
@@ -117,7 +146,7 @@ function ZaloPage() {
                     }
                     if (value === 'Cá nhân' && el.title === value) {
                         return <Box key={index} sx={{ userSelect: 'none' }}><img style={{ width: '100%', userSelect: 'none' }} src={el.img} alt="" />
-                            <Box sx={{ height: '63px' }}>
+                            <Box sx={{ height: '63px' }} onClick={() => { setValue('profile') }}>
                                 <ListItem alignItems="flex-start" sx={{ alignItems: 'center' }}>
                                     <ListItemAvatar sx={{ margin: 0 }}>
                                         <Avatar alt="Remy Sharp" src={infoUser.avatar} />
@@ -152,10 +181,10 @@ function ZaloPage() {
                 }
                 )}
             </Box>
-            {value !== 'setting' && <Box>
+            {value !== 'setting' && value !== 'profile' && <Box>
                 <Tabs TabIndicatorProps={{ sx: { display: 'none' } }} sx={{ backgroundColor: '#fafbfd', borderTop: '1px solid #ecedee' }} value={value} variant="fullWidth" onChange={handleChange} aria-label="basic tabs example">
                     {NAV.map(((el, index) => {
-                        if (el.title === 'setting') return <></>
+                        if (el.title === 'setting' || el.title === "profile") return <></>
                         return <Tab sx={{ padding: ' 12px 0px', minWidth: 'unset' }} label={<><Box>{el.title !== value ? el.icon : el.iconActive}</Box>{el.title === value ? <Typography sx={{ fontSize: '11px', textTransform: 'none' }}>{el.title}</Typography> : ''}</>} key={index} value={el.title} />
                     }))}
 

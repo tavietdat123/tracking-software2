@@ -12,6 +12,7 @@ interface CreateCode {
     fullName: string
     phone: string
     avatar: File | '';
+    bg: File | '';
 }
 function AddCode({ open, handleClose, handleResetList }: { open: boolean, handleClose: () => void, handleResetList: () => void }) {
     const [loading, setLoading] = useState(false)
@@ -24,7 +25,8 @@ function AddCode({ open, handleClose, handleResetList }: { open: boolean, handle
     const onSubmit = (data: CreateCode) => {
         setLoading(true)
         const formData = new FormData()
-        formData.append('avatar', data.avatar)
+        formData.append('files', data.avatar)
+        formData.append('files', data.bg)
         formData.append('code', data.code)
         formData.append('fullName', data.fullName)
         formData.append('message', data.message)
@@ -108,6 +110,8 @@ function AddCode({ open, handleClose, handleResetList }: { open: boolean, handle
                 {errors.phone && <Typography sx={{ color: 'red', fontSize: '12px', }}>This field is required</Typography>}
             </Box>
             <Box sx={{ marginBottom: '15px' }}>
+                <label>Avatar: </label>
+
                 <Controller
                     name="avatar"
                     control={control}
@@ -125,7 +129,28 @@ function AddCode({ open, handleClose, handleResetList }: { open: boolean, handle
                     )}
                 />
                 {errors.avatar && <Typography sx={{ color: 'red', fontSize: '12px', }}>This field is required</Typography>}
+
             </Box>
+            <Box>
+                <label>Background: </label>
+                <Controller
+                    name="bg"
+                    control={control}
+                    defaultValue={''}
+                    rules={{ required: true }}
+                    render={({ field }: any) => (
+                        <input
+                            type="file"
+                            accept="image/*"
+                            onChange={(e: any) => {
+                                field.onChange(e.target.files[0]);
+                            }}
+                        />
+
+                    )}
+                />
+            </Box>
+            {errors.bg && <Typography sx={{ color: 'red', fontSize: '12px', }}>This field is required</Typography>}
 
 
         </DialogContent>
