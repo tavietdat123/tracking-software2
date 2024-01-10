@@ -113,7 +113,7 @@ function LoginPage() {
                     control={control}
                     rules={{ required: true }}
                     render={({ field }: any) => (
-                        <TextField sx={{ backgroundColor: '#fff', width: '100%', borderRadius: '4px', marginTop: '5px', outline: 'none' }} {...field} size="small" />
+                        <TextField sx={{ backgroundColor: '#fff', width: '100%', borderRadius: '4px', marginTop: '5px', outline: 'none' }} {...field} size="small" type="password"/>
                     )}
                 />
                 <Box>
