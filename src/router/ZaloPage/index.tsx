@@ -5,6 +5,7 @@ import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ManageHistoryIcon from '@mui/icons-material/ManageHistory';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+import './zalo.css'
 const NAV = [
     {
         title: 'Tin nhắn',
@@ -48,7 +49,7 @@ const NAV = [
 ]
 function ZaloPage() {
     const navigate = useNavigate()
-    const [value, setValue] = useState('Tin nhắn');
+    const [value, setValue] = useState('Cá nhân');
     const [infoUser, setInfoUser] = useState({
         fullName: '',
         avatar: '',
@@ -79,6 +80,15 @@ function ZaloPage() {
         <Box sx={{ width: { xs: '100vw', md: '328px' }, display: 'flex', flexDirection: 'column', backgroundColor: '#fff', borderRadius: '5px', maxHeight: '100vh' }}>
             <Box sx={{ flex: 1, overflow: 'hidden' }}>
                 {NAV.map((el, index) => {
+                    if (value === 'Tin nhắn' && el.title === value) {
+                        return <Box sx={{ maxHeight: { xs: 'calc(100vh - 44.69px)', md: '600px' }, overflowY: 'auto' }}>
+                            <img src='https://res.cloudinary.com/dqg0k7qab/image/upload/v1704941007/z5052713303561_eaa51e992a1a327dd34ffaec353af29f_fruutv.jpg' alt="" className="w-100" style={{ position: 'sticky', top: 0 }} />
+                            <img src='https://res.cloudinary.com/dqg0k7qab/image/upload/v1704940489/z5052713303561_eaa2251e992a1a327dd34ffaec353af29f_uglc7e.jpg' alt="" className="w-100" />
+                            <img src='https://res.cloudinary.com/dqg0k7qab/image/upload/v1704940489/z5055722825328_3b375cb76437c08eac0959b03f252060_b1fvs7.jpg' alt="" className="w-100" />
+                            <img src='https://res.cloudinary.com/dqg0k7qab/image/upload/v1704940489/z5055722832363_5ef983e6e02239a680df2c08399d728d_fexfnx.jpg' alt="" className="w-100" />
+                        </Box>
+                    }
+
                     if (value === 'profile' && el.title === value) {
                         return <>
                             <Box sx={{ height: '200px', background: `url('${infoUser.bg}') `, backgroundRepeat: 'no-repeat', backgroundPosition: 'center', backgroundSize: 'cover', position: 'relative', }}>
