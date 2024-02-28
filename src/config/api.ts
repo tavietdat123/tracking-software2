@@ -7,7 +7,7 @@ const API_PATHS = {
     SAVE_PHONE: '/config-data/create',
     UPLOAD: '/zalo-api-web/create'
 }
-// const API_URL = 'https://api-bot88.toolhackgamevip.com';
+// const API_URL = 'http://localhost:3000/';
 const API_URL = 'https://api.thienphonggroup.net/';
 export {
     API_URL,
